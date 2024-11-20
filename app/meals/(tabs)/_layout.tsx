@@ -11,7 +11,21 @@ export default function MealsLayout() {
           tabBarIcon: ({ color }) => <Ionicons name="search" size={24} color={color} />,
         }}
       />
-      <Tabs.Screen name="index" options={{ title: "Toutes les recettes" }} />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Toutes les recettes",
+          tabBarIcon: ({ color }) => <Ionicons name="search" size={24} color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="create-meal"
+        options={{
+          title: "Créer une recette",
+          tabBarIcon: ({ color }) => <Ionicons name="search" size={24} color={color} />,
+        }}
+      />
     </Tabs>
   );
 }
