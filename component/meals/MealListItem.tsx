@@ -1,5 +1,14 @@
 import { router } from "expo-router";
 import { Button, Text, View } from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
+
+const MealActions = () => {
+  return (
+    <View>
+      <Button title="Supprimer" />
+    </View>
+  );
+};
 
 const MealListItem = ({ meal }) => {
   const handleNavigateToDetails = (id) => {
@@ -7,10 +16,10 @@ const MealListItem = ({ meal }) => {
   };
 
   return (
-    <View>
+    <Swipeable renderRightActions={MealActions}>
       <Text>{meal.strMeal}</Text>
       <Button title="Voir la recette" onPress={() => handleNavigateToDetails(meal.idMeal)} />
-    </View>
+    </Swipeable>
   );
 };
 
