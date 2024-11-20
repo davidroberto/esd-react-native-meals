@@ -21,12 +21,20 @@ export default function HomeScreen() {
     }
   };
 
+  const handleNavigateToMeals = () => {
+    router.push("/meals");
+  };
+
+  const handleNavigateToRandomMeal = () => {
+    router.push("/meals/random");
+  };
+
   useEffect(() => {
     (async () => {
       const mealsJson = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=");
       const meals = await mealsJson.json();
 
-      setMeals(meals.meals);
+      setMeals(meals.meals.slice(0, 3));
     })();
   }, []);
 
@@ -35,6 +43,8 @@ export default function HomeScreen() {
       <TextInput placeholder="Rechercher" onChangeText={(text) => handleChangeSearch(text)} />
       <Button title="Rechercher" onPress={handleNavigateToSearch} />
       <Text>Les recettes de Roberto</Text>
+      <Button title="Voir toutes les recettes" color={"red"} onPress={handleNavigateToMeals} />
+      <Button title="Voir une recette aléatoire" color={"green"} onPress={handleNavigateToRandomMeal} />
 
       {meals.length === 0 ? (
         <Text>Loading...</Text>
