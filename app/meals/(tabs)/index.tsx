@@ -1,21 +1,9 @@
 import MealListItem from "@/component/meals/MealListItem";
-import { useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
-import { useRouter } from "expo-router";
+import { useGetMeals } from "@/hook/useGetMeals";
 
 export default function AllMealsScreen() {
-  const [meals, setMeals] = useState([]);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    (async () => {
-      const mealsJson = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=");
-      const meals = await mealsJson.json();
-
-      setMeals(meals.meals);
-    })();
-  }, []);
+  const meals = useGetMeals();
 
   return (
     <View>

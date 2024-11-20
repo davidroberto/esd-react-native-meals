@@ -2,10 +2,14 @@ import MealListItem from "@/component/meals/MealListItem";
 import { useEffect, useState } from "react";
 import { FlatList, Text, View, TextInput, Button, Pressable, StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
+import { useGetMeals } from "@/hook/useGetMeals";
 
 export default function HomeScreen() {
-  const [meals, setMeals] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  // j'appelle le hook useGetMeals
+  // pour récupérer les recettes
+  const meals = useGetMeals();
 
   const router = useRouter();
 
@@ -32,15 +36,6 @@ export default function HomeScreen() {
   const handleNavigateToUser = () => {
     router.push("/user/");
   };
-
-  useEffect(() => {
-    (async () => {
-      const mealsJson = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=");
-      const meals = await mealsJson.json();
-
-      setMeals(meals.meals.slice(0, 3));
-    })();
-  }, []);
 
   return (
     <View>
