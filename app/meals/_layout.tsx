@@ -5,7 +5,6 @@ export default function MealsLayout() {
     <Stack>
       <Stack.Screen name="details/[id]" options={{ title: "Recette" }} />
       <Stack.Screen name="search/[query]" options={{ title: "Recherche" }} />
-      <Stack.Screen name="(tabs)" options={{ title: "Tabs", headerShown: false }} />
     </Stack>
   );
 }
