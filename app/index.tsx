@@ -7,15 +7,15 @@ import { useGetMeals } from "@/hook/useGetMeals";
 export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState("");
 
+  const handleChangeSearch = (text) => {
+    setSearchQuery(text);
+  };
+
   // j'appelle le hook useGetMeals
   // pour récupérer les recettes
   const meals = useGetMeals();
 
   const router = useRouter();
-
-  const handleChangeSearch = (text) => {
-    setSearchQuery(text);
-  };
 
   const handleNavigateToSearch = () => {
     if (searchQuery === "") {

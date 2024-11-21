@@ -1,3 +1,4 @@
+import { useGetMealById } from "@/hook/useGetMealById";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, View, Image, Alert } from "react-native";
@@ -5,16 +6,7 @@ import { Text, View, Image, Alert } from "react-native";
 const MealDetailScreen = () => {
   const { id } = useLocalSearchParams();
 
-  const [meal, setMeal] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const mealJson = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
-      const meal = await mealJson.json();
-
-      setMeal(meal.meals[0]);
-    })();
-  }, []);
+  const meal = useGetMealById(id);
 
   if (!meal) {
     return <Text>Loading...</Text>;
